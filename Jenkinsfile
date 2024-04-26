@@ -35,7 +35,7 @@ environment {
                               "files": [
                                 {
                                   "pattern": "jarstaging/(*)",
-                                  "target": "jarfmavenprj-libs-release-local/{1}",
+                                  "target": "mavenprj-libs-release-local/{1}",
                                   "flat": "false",
                                   "props" : "${properties}",
                                   "exclusions": [ "*.sha1", "*.md5"]
