@@ -1,4 +1,4 @@
-def registry = 'https://rajesh82.jfrog.io'
+def registry = 'https://rajesh82.jfrog.io/'
 pipeline {
     agent {
         node {
@@ -12,7 +12,16 @@ environment {
     stages {
         stage("build") {
             steps {
+                echo "--------build start-------"
                 sh 'mvn clean deploy'
+                echo "--------build end---------"
+            }
+        }
+        stage("test") {
+            steps {
+                echo "--------test started---------"
+                sh 'mvn surefire-report:report'
+                echo "--------test end---------"
             }
         }
 
@@ -20,7 +29,7 @@ environment {
             steps {
                 script {
                         echo '<--------------- Jar Publish Started --------------->'
-                         def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"artifactory-cred"
+                         def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"jenkins-jfrog-credintials"
                          def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                          def uploadSpec = """{
                               "files": [
