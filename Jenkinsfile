@@ -1,4 +1,4 @@
-def registry = 'https://rajesh82.jfrog.io/'
+def registry = 'https://rajesh1982.jfrog.io/'
 pipeline {
     agent {
         node {
@@ -35,7 +35,7 @@ environment {
                               "files": [
                                 {
                                   "pattern": "jarstaging/(*)",
-                                  "target": "libs-release-local/{1}",
+                                  "target": "jarfiles-libs-release-local/{1}",
                                   "flat": "false",
                                   "props" : "${properties}",
                                   "exclusions": [ "*.sha1", "*.md5"]
